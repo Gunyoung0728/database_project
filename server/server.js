@@ -15,7 +15,7 @@ const app = express();
 
 // 미들웨어(middleware) 설정
 // 미들웨어 = 요청이 들어올 때 자동으로 실행되는 처리기
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:5173' })); // React 주소에서 오는 요청 허용
 app.use(express.json());
 app.use('/api/auth',    authRouter);
 app.use('/api/places',  placesRouter);
@@ -35,7 +35,7 @@ app.get('/health', (req, res) => {
 // DB 연결 확인
 app.get('/db-test', async (req, res) => {
   try {
-    const [rows] = await db.query('SELECT COUNT(*) AS 건물수 FROM 건물');
+    const [rows] = await db.query('SELECT COUNT(*) AS 건물수 FROM places');
     res.json({ status: 'DB 연결 성공!', data: rows[0] });
   } catch (err) {
     res.status(500).json({ status: 'DB 연결 실패', error: err.message });
@@ -43,7 +43,7 @@ app.get('/db-test', async (req, res) => {
 });
 
 // 서버 시작
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, '0.0.0.0', () => {
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
   console.log(`✅ 서버 실행 중: http://localhost:${PORT}`);
 });

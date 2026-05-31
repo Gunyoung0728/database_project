@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // 백엔드 주소 기본 설정
 const api = axios.create({
-  baseURL: 'https://databaseproject-production-d034.up.railway.app',
+  baseURL: 'http://localhost:3001',
 });
 
 // 요청할 때마다 토큰 자동으로 붙여주기
