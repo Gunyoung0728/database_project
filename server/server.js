@@ -15,7 +15,12 @@ const app = express();
 
 // 미들웨어(middleware) 설정
 // 미들웨어 = 요청이 들어올 때 자동으로 실행되는 처리기
-app.use(cors({ origin: 'http://localhost:5173' })); // React 주소에서 오는 요청 허용
+app.use(cors({
+          origin: [
+            'http://localhost:5173',
+            'https://database-project-kappa.vercel.app'
+          ]
+        }));
 app.use(express.json());
 app.use('/api/auth',    authRouter);
 app.use('/api/places',  placesRouter);
