@@ -8,8 +8,8 @@ import {
   login, register
 } from "./api.js";
 
-const getRatings   = () => fetch('http://localhost:3001/api/ratings').then(r=>r.json());
-const saveRating   = (placeId, rating) => fetch(`http://localhost:3001/api/ratings/${placeId}`, {
+const getRatings   = () => fetch('https://databaseproject-production-d034.up.railway.app/api/ratings').then(r=>r.json());
+const saveRating   = (placeId, rating) => fetch(`https://databaseproject-production-d034.up.railway.app/api/ratings/${placeId}`, {
   method:'POST', headers:{'Content-Type':'application/json','Authorization':`Bearer ${localStorage.getItem('token')}`},
   body: JSON.stringify({ rating })
 });
@@ -412,7 +412,7 @@ function PlacesPage({ loggedIn, setPage, places }) {
       setRatings(map);
     }).catch(console.error);
     if (loggedIn) {
-      fetch('http://localhost:3001/api/ratings/my', { headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`} })
+      fetch('https://databaseproject-production-d034.up.railway.app/api/ratings/my', { headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`} })
         .then(r=>r.json()).then(data=>{
           const map = {};
           data.forEach(r=>{ map[r.place_id]=r.rating; });

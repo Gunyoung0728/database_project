@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 
 async function fetchDirections(ox, oy, dx, dy) {
-  const res = await fetch('http://localhost:3001/api/kakao/directions', {
+  const res = await fetch('https://databaseproject-production-d034.up.railway.app/api/kakao/directions', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ origin_x: ox, origin_y: oy, dest_x: dx, dest_y: dy })
