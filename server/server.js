@@ -40,7 +40,7 @@ app.get('/health', (req, res) => {
 // DB 연결 확인
 app.get('/db-test', async (req, res) => {
   try {
-    const [rows] = await db.query('SELECT COUNT(*) AS 건물수 FROM places');
+    const [rows] = await db.query('SELECT COUNT(*) AS 건물수 FROM 건물');
     res.json({ status: 'DB 연결 성공!', data: rows[0] });
   } catch (err) {
     res.status(500).json({ status: 'DB 연결 실패', error: err.message });
